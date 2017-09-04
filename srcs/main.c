@@ -25,172 +25,38 @@ void	ft_putpixel_in_img(int x, int y, t_gen *g, unsigned int color)
 	}
 }
 
-
-void	ft_mandel(t_gen *g)
+int ft_mouse(int x, int y, t_gen *g)
 {
-	int x;
-	int y;
-	double tmp;
+	//(void)bouton;
+	(void)x;
+	(void)y;
+	(void)g;
+	double x_d = x;
+	double y_d = y;
 
-	g->x1 = -2.1;
-	g->x2 = 0.6;
-	g->y1 = -1.2;
-	g->y2 = 1.2;
-	g->zoom = 100;
-	g->image_x = W;
-	g->image_y = H;
-	g->red = 198;
-	g->green = 42;
-	g->blue = 11;
+	//printf("x = %d, y = %d\n", x, y);
+	if(x < 0 || x > H || y < 0 || y > W || g->nbr_fract != 2)
+		return(0);
 
-	x = 0;
-	g->zoom_x = g->image_x / (g->x2 - g->x1);
-	g->zoom_y = g->image_y / (g->y2 - g->y1);
-	while(x < g->image_x)
-	{
-		y = 0;
-		while(y < g->image_y)
-		{
-			g->c_r = x / g->zoom_x + g->x1;
-			g->c_i = y / g->zoom_y + g->y1;
-			g->z_r = 0;
-			g->z_i = 0;
-			g->i = 0;
 
-			while(g->z_r * g->z_r + g->z_i * g->z_i < 4 && g->i < g->iter)
-			{
-				tmp = g->z_r;
-				g->z_r = g->z_r * g->z_r - g->z_i * g->z_i + g->c_r;
-				g->z_i = 2 * g->z_i * tmp + g->c_i;
-				g->i++;
-			}
-			if(g->i == g->iter)
-			{
-				ft_putpixel_in_img(x, y, g, 0);
-			}
-			else
-				ft_putpixel_in_img(x, y, g, 0x00FFFFFF % (g->i * 0x00424242) / g->iter);
-			y++;
-		}
-		x++;
-	}
-	//printf("%f\n", g->iter);
-	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-	//mlx_string_put(g->mlx, g->win, 0, 0, 0x00FFFFFF, ft_itoa(g->iter));
+
+
+
+
+
+	while(y_d > 2)
+		y_d = y_d / 500;
+	while(x_d > 2)
+		x_d = x_d / 500;
+	g->c_r = x_d;
+	g->c_i = y_d;
+	ft_julia(g);
+	printf("x = %f, y = %f\n", y_d, x_d);
+	printf("x = %d, y = %d\n", x, y);
+	return (0);
 }
 
-void	ft_julia(t_gen *g)
-{
-	int x;
-	int y;
-	double tmp;
 
-	g->x1 = -1;
-	g->x2 = 1;
-	g->y1 = -1.2;
-	g->y2 = 1.2;
-	g->zoom = 200;
-	g->image_x = W;
-	g->image_y = H;
-	g->red = 198;
-	g->green = 42;
-	g->blue = 11;
-
-	x = 0;
-	g->image_x = (g->x2 - g->x1) * (g->zoom + 50);
-	g->image_y = (g->y2 - g->y1) * (g->zoom + 10);
-	while(x < g->image_x)
-	{
-		y = 0;
-		while(y < g->image_y)
-		{
-			g->c_r = 0.285;
-			g->c_i = 0.01;
-			g->z_r = x / (g->zoom + 50) + g->x1;
-			g->z_i = y / (g->zoom + 10) + g->y1;;
-			g->i = 0;
-
-			while(g->z_r * g->z_r + g->z_i * g->z_i < 4 && g->i < g->iter)
-			{
-				tmp = g->z_r;
-				g->z_r = g->z_r * g->z_r - g->z_i * g->z_i + g->c_r;
-				g->z_i = 2 * g->z_i * tmp + g->c_i;
-				g->i++;
-			}
-			if(g->i == g->iter)
-			{
-				ft_putpixel_in_img(x, y, g, 0);
-			}
-			else
-				ft_putpixel_in_img(x, y, g, 0x00FFFFFF % (g->i * 0x00424242) / g->iter);
-			y++;
-		}
-		x++;
-	}
-	//printf("%f\n", g->iter);
-	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-	//mlx_string_put(g->mlx, g->win, 0, 0, 0x00FFFFFF, ft_itoa(g->iter));
-}
-
-float	ft_fabs(float i)
-{
-	if(i < 0)
-		i = -1;
-	return (i);
-}
-
-void	ft_burnnig(t_gen *g)
-{
-	int x;
-	int y;
-	double tmp;
-
-	g->x1 = -2.1;
-	g->x2 = 1.9;
-	g->y1 = -1.5;
-	g->y2 = 1;
-	g->zoom = W / 4 + 14;
-	g->image_x = W;
-	g->image_y = H;
-	g->red = 198;
-	g->green = 42;
-	g->blue = 11;
-
-
-	x = 0;
-	//	g->image_x = (g->x2 - g->x1) * (g->zoom + 50);
-	//	g->image_y = (g->y2 - g->y1) * (g->zoom + 10);
-	while(x < g->image_x)
-	{
-		y = 0;
-		while(y < g->image_y)
-		{
-			g->c_r = x / g->zoom + g->x1;
-			g->c_i = y / g->zoom + g->y1;
-			g->z_r = 0;
-			g->z_i = 0;
-			g->i = 0;
-			while (g->z_r * g->z_r + g->z_i * g->z_i < 4 && g->i < g->iter)
-			{
-				tmp = g->z_r;
-				g->z_r = (g->z_r * g->z_r - g->z_i * g->z_i + g->c_r);
-				g->z_i = 2 * fabs(g->z_i * tmp) + g->c_i;
-				g->i++;
-			}
-			if (g->i == g->iter)
-			{
-				ft_putpixel_in_img(x, y, g, 0);
-			}
-			else
-				ft_putpixel_in_img(x, y, g, 0x00FFFFFF % (g->i * 0x00424242) / g->iter);
-			y++;
-		}
-		x++;
-	}
-	//printf("%f\n", g->iter);
-	mlx_put_image_to_window(g->mlx, g->win, g->img, 0, 0);
-	//mlx_string_put(g->mlx, g->win, 0, 0, 0x00FFFFFF, ft_itoa(g->iter));
-}
 
 int main(int argc, char **argv)
 {
@@ -209,7 +75,13 @@ int main(int argc, char **argv)
 		return (-1);
 	if (!(g.win = mlx_new_window(g.mlx, W, H, "fdf")))
 		return (-1);
+	g.nbr_fract = argv[1][0] - '0';
+		g.red = 198;
+	g.green = 42;
+	g.blue = 11;
 
+	g.c_r = 0.285;
+	g.c_i = 0.01;
 	if(argv[1][0] == '1' && argv[1][1] == 0)
 		ft_mandel(&g);
 	else if(argv[1][0] == '2' && argv[1][1] == 0)
@@ -221,5 +93,6 @@ int main(int argc, char **argv)
 
 	mlx_hook(g.win, 2, 1L << 0, &key_pressed, &g);
 	mlx_hook(g.win, 17, (1L << 17), &red_cross, &g);
+	mlx_hook(g.win, 6, (1L<<6), &ft_mouse, &g);
 	mlx_loop(g.mlx);
 }

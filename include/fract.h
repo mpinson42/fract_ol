@@ -33,6 +33,8 @@ typedef	struct		s_gen
 
 	double				c_r;
 	double				c_i;
+	double				c_r2;
+	double				c_i2;
 	double				z_r;
 	double				z_i;
 
@@ -40,11 +42,17 @@ typedef	struct		s_gen
 	unsigned int	green;
 	unsigned int	blue;
 	int				i;
+	int				x;
+	int				y;
+	int				nbr_fract;
 }					t_gen;
 
 int		key_pressed(int kc, t_gen *g);
 int		red_cross(t_gen *g);
 void	ft_mandel(t_gen *g);
 void	ft_burnnig(t_gen *g);
+void	ft_julia(t_gen *g);
+void	ft_putpixel_in_img(int x, int y, t_gen *g, unsigned int color);
+void	ft_backgrond(t_gen *g);
 
 #endif
