@@ -51,7 +51,6 @@ typedef	struct		s_gen
 	int				s_x;
 	int				s_y;
 	double 			test;
-	char			str_iter[14];
 }					t_gen;
 
 int		key_pressed(int kc, t_gen *g);

@@ -64,12 +64,14 @@ int ft_clic(int button, int x,int y, t_gen *g)
 	if(button == 5 || button == 1) //+
 	{
 		g->zoom_mou += 50 * i;
-		g->s_x -= (50 * i) * (x / 100);
-		g->s_y -= (50 * i) * (y / 100);
+		g->s_x -= (50 * i) * (x / 100); //(x - 250)
+		g->s_y -= (50 * i) * (y / 100); //(y - 250)
 		i += 0.5; 
 	}
 	if(button == 4 || button == 2)//-
 	{
+		if(g->zoom_mou - 50 - i < 0)
+			return(0);
 		g->zoom_mou -= 50 * i;
 		g->s_x += (50 * i) * (x / 100);
 		g->s_y += (50 * i) * (y / 100);
@@ -101,7 +103,10 @@ int main(int argc, char **argv)
 	ft_bzero(&g, sizeof(g));
 	g.iter = 50;
 	if(argc != 2)
+	{
 		ft_putstr("./fractol [1](maelbrot) [2](julia) [3]burning");
+		return(0);
+	}
 	if (!(g.mlx = mlx_init()))
 		return (-1);
 	if (!(g.img = mlx_new_image(g.mlx, W, H)))
