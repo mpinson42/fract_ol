@@ -1,10 +1,10 @@
 NAME = fract_ol
 
-SRC = srcs/main.c srcs/event.c srcs/fractal.c
+SRC = srcs/main.c srcs/event.c srcs/fractal.c srcs/fract_bonus1.c srcs/fract_bonus2.c
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC2 = main.o event.o fractal.o
+SRC2 = main.o event.o fractal.o fract_bonus2.o fract_bonus2.o
 
 all: $(NAME)
 

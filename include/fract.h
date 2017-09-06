@@ -45,6 +45,13 @@ typedef	struct		s_gen
 	int				x;
 	int				y;
 	int				nbr_fract;
+
+
+	int				zoom_mou;
+	int				s_x;
+	int				s_y;
+	double 			test;
+	char			str_iter[14];
 }					t_gen;
 
 int		key_pressed(int kc, t_gen *g);
@@ -54,5 +61,20 @@ void	ft_burnnig(t_gen *g);
 void	ft_julia(t_gen *g);
 void	ft_putpixel_in_img(int x, int y, t_gen *g, unsigned int color);
 void	ft_backgrond(t_gen *g);
+char		*ft_itoa_s(int n, char str[14]);
+void ft_init_mandel(t_gen *g, int i);
+void ft_init_julia(t_gen *g, int i);
+void ft_init_burning(t_gen *g, int i);
+void	ft_frac5(t_gen *g);
+void	ft_frac4(t_gen *g);
+void	ft_frac3(t_gen *g);
+void	ft_frac2(t_gen *g);
+void	ft_frac1(t_gen *g);
+void ft_init_frac1(t_gen *g, int i);
+void ft_init_frac2(t_gen *g, int i);
+void ft_init_frac3(t_gen *g, int i);
+void ft_init_frac4(t_gen *g, int i);
+void ft_init_frac5(t_gen *g, int i);
+void ft_menu(t_gen *g);
 
 #endif

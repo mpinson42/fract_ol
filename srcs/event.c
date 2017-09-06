@@ -29,6 +29,8 @@ int		key_pressed(int kc, t_gen *g)
 	if(kc == 78) // -
 	{
 		g->iter -= 1;
+		if(g->iter <= 0)
+			g->iter = 1;
 	}
 	if (kc == 126)
 		g->y -= 10;
@@ -58,13 +60,47 @@ int		key_pressed(int kc, t_gen *g)
 	{
 		g->blue--;
 	}
+	if(kc == 18)
+		ft_init_mandel(g, 1);
+	if(kc == 19)
+		ft_init_julia(g, 2);
+	if(kc == 20)
+		ft_init_burning(g, 3);
+
+	if(kc == 21)
+		ft_init_frac1(g, 4);
+	if(kc == 22)
+		ft_init_frac2(g, 5);
+	if(kc == 23)
+		ft_init_frac3(g, 6);
+	if(kc == 26)
+		ft_init_frac4(g, 7);
+	if(kc == 28)
+		ft_init_frac5(g, 8);
+
+
+	if(kc == 117 && g->nbr_fract == 1)
+		ft_init_mandel(g, 1);
+	if(kc == 117 && g->nbr_fract == 2)
+		ft_init_julia(g, 2);
+	if(kc == 117 && g->nbr_fract == 3)
+		ft_init_burning(g, 3);
+
+
+	if(kc == 117 && g->nbr_fract == 4)
+		ft_init_frac1(g, 4);
+	if(kc == 117 && g->nbr_fract == 5)
+		ft_init_frac2(g, 5);
+	if(kc == 117 && g->nbr_fract == 6)
+		ft_init_frac3(g, 6);
+	if(kc == 117 && g->nbr_fract == 7)
+		ft_init_frac4(g, 7);
+	if(kc == 117 && g->nbr_fract == 8)
+		ft_init_frac5(g, 8);
 
 
 
-
-
-
-	//printf("%d\n", kc);
+	printf("%d\n", kc);
 
 
 	if(g->nbr_fract == 3)
@@ -73,7 +109,17 @@ int		key_pressed(int kc, t_gen *g)
 		ft_julia(g);
 	if(g->nbr_fract == 1)
 		ft_mandel(g);
-	printf("%d\n", g->blue);
+	if(g->nbr_fract == 4)
+		ft_frac1(g);
+	if(g->nbr_fract == 5)
+		ft_frac2(g);
+	if(g->nbr_fract == 6)
+		ft_frac3(g);
+	if(g->nbr_fract == 7)
+		ft_frac4(g);
+	if(g->nbr_fract == 8)
+		ft_frac5(g);
+	//printf("%d\n", g->blue);
 	return (0);
 }
 
@@ -83,3 +129,4 @@ int		red_cross(t_gen *g)
 	exit(0);
 	return (0);
 }
+
