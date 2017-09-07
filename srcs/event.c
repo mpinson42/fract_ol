@@ -97,9 +97,12 @@ int		key_pressed(int kc, t_gen *g)
 		ft_init_frac4(g, 7);
 	if(kc == 117 && g->nbr_fract == 8)
 		ft_init_frac5(g, 8);
+	if(kc == 49 && g->space == 0)
+		g->space = 1;
+	else if(kc == 49 && g->space == 1)
+		g->space = 0;
 
-
-
+	printf("%d\n", g->space);
 	printf("%d\n", kc);
 
 
@@ -112,13 +115,13 @@ int		key_pressed(int kc, t_gen *g)
 	if(g->nbr_fract == 4)
 		ft_frac1(g);
 	if(g->nbr_fract == 5)
-		ft_frac2(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 6)
-		ft_frac3(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 7)
-		ft_frac4(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 8)
-		ft_frac5(g);
+		ft_frac1(g);
 	//printf("%d\n", g->blue);
 	return (0);
 }

@@ -35,7 +35,7 @@ int ft_mouse(int x, int y, t_gen *g)
 	double y_d = y;
 
 	//printf("x = %d, y = %d\n", x, y);
-	if(x < 0 || x > H || y < 0 || y > W || g->nbr_fract != 2)
+	if(x < 0 || x > H || y < 0 || y > W || g->nbr_fract != 2 || g->space != 0)
 		return(0);
 
 
@@ -60,22 +60,17 @@ int ft_clic(int button, int x,int y, t_gen *g)
 {
 	(void)g;
 	//printf("bouton = %d x = %d y = %d\n", button, x, y);
-	static double i = 0;
 	if(button == 5 || button == 1) //+
 	{
-		g->zoom_mou += 50 * i;
-		g->s_x -= (50 * i) * (x / 100); //(x - 250)
-		g->s_y -= (50 * i) * (y / 100); //(y - 250)
-		i += 0.5; 
+		g->zoom *= 1.1;
+		g->s_x += (250 / g->zoom - x); //(x - 250)
+		g->s_y += (250 / g->zoom - y); //(y - 250) 
 	}
 	if(button == 4 || button == 2)//-
 	{
-		if(g->zoom_mou - 50 - i < 0)
+		if(g->zoom <= 1)
 			return(0);
-		g->zoom_mou -= 50 * i;
-		g->s_x += (50 * i) * (x / 100);
-		g->s_y += (50 * i) * (y / 100);
-		i -= 0.5; 
+		g->zoom /= 1.1; 
 	}
 	if(g->nbr_fract == 1)
 		ft_mandel(g);
@@ -86,13 +81,13 @@ int ft_clic(int button, int x,int y, t_gen *g)
 	if(g->nbr_fract == 4)
 		ft_frac1(g);
 	if(g->nbr_fract == 5)
-		ft_frac2(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 6)
-		ft_frac3(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 7)
-		ft_frac4(g);
+		ft_frac1(g);
 	if(g->nbr_fract == 8)
-		ft_frac5(g);
+		ft_frac1(g);
 	return(0);
 }
 

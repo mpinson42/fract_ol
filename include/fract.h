@@ -44,6 +44,7 @@ typedef	struct		s_gen
 	int				i;
 	int				x;
 	int				y;
+	int 			space;
 	int				nbr_fract;
 
 
