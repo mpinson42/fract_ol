@@ -17,16 +17,18 @@ $(NAME): $(SRC)
 	@make -C ./minilibx_macos all
 	@cp ./minilibx_macos/libmlx.a ./lib
 	@cp ./libft/libft.a ./lib
-	gcc  $(FLAGS) -I ./include/  -L./lib  -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(SRC)
+	@gcc  $(FLAGS) -I ./include/  -L./lib  -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(SRC)
+	@afplay musique/enclume.mp3 &
 
 
 clean:
-	/bin/rm -f $(SRC2)
+	@/bin/rm -f $(SRC2)
 	@make -C ./libft clean
 	@make -C ./minilibx_macos clean
+	@afplay musique/destruction.mp3 &
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 	@make -C ./libft fclean
 
 re: fclean all

@@ -115,6 +115,7 @@ int		main(int argc, char **argv)
 
 	ft_bzero(&g, sizeof(g));
 	g.iter = 50;
+	system("afplay musique/arbre.mp3 &");
 	if (argc != 2)
 	{
 		ft_putstr("./fractol [1](maelbrot) [2](julia) [3]burning");

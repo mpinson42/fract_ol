@@ -87,7 +87,10 @@ void	key_2(int kc, t_gen *g)
 int		key_pressed(int kc, t_gen *g)
 {
 	if (kc == 53)
+	{
+		system("killall afplay");
 		exit(0);
+	}
 	if (kc == 69)
 		g->iter += 1;
 	key_2(kc, g);
@@ -111,6 +114,7 @@ int		key_pressed(int kc, t_gen *g)
 int		red_cross(t_gen *g)
 {
 	(void)g;
+	system("killall afplay");
 	exit(0);
 	return (0);
 }

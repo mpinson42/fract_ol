@@ -25,9 +25,9 @@ void	ft_frac_2(int x, int y, double tmp, t_gen *g)
 		g->i++;
 	}
 	if (g->i == g->iter)
-		ft_putpixel_in_img(x, y, g, 0);
+		ft_putpixel_in_img(y, x, g, 0);
 	else
-		ft_putpixel_in_img(x, y, g, 42);
+		ft_putpixel_in_img(y, x, g, 42);
 }
 
 void	ft_frac1(t_gen *g)
