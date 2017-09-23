@@ -13,8 +13,8 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	@echo "mpinson" > auteur
-	@make -C ./libft all
-	@make -C ./minilibx_macos all
+	make -C ./libft all
+	make -C ./minilibx_macos all
 	@cp ./minilibx_macos/libmlx.a ./lib
 	@cp ./libft/libft.a ./lib
 	@gcc  $(FLAGS) -I ./include/  -L./lib  -lft -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(SRC)

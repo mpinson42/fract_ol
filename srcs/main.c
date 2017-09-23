@@ -56,6 +56,8 @@ int		ft_mouse(int x, int y, t_gen *g)
 
 int		ft_clic(int button, int x, int y, t_gen *g)
 {
+	if (y < 0)
+		return (0);
 	if (button == 5 || button == 1)
 	{
 		g->zoom *= 1.1;
@@ -64,10 +66,8 @@ int		ft_clic(int button, int x, int y, t_gen *g)
 	}
 	if ((button == 4 || button == 2) && g->zoom >= 1)
 		g->zoom /= 1.1;
-	if (g->nbr_fract == 1)
-		ft_mandel(g);
-	if (g->nbr_fract == 2)
-		ft_julia(g);
+	g->nbr_fract == 1 ? ft_mandel(g) : 0;
+	g->nbr_fract == 2 ? ft_julia(g) : 0;
 	if (g->nbr_fract == 3)
 		ft_burnnig(g);
 	if (g->nbr_fract == 4)
@@ -85,6 +85,7 @@ int		ft_clic(int button, int x, int y, t_gen *g)
 
 int		main_chouse(t_gen *g, char **argv)
 {
+	g->iter = 50;
 	if (argv[1][0] == '1' && argv[1][1] == 0)
 		ft_init_mandel(g, argv[1][0] - '0');
 	else if (argv[1][0] == '2' && argv[1][1] == 0)
@@ -114,8 +115,6 @@ int		main(int argc, char **argv)
 	t_gen g;
 
 	ft_bzero(&g, sizeof(g));
-	g.iter = 50;
-	system("afplay musique/arbre.mp3 &");
 	if (argc != 2)
 	{
 		ft_putstr("./fractol [1](maelbrot) [2](julia) [3]burning");
@@ -132,6 +131,7 @@ int		main(int argc, char **argv)
 		return (-1);
 	if (main_chouse(&g, argv) == -1)
 		return (-1);
+	system("afplay musique/arbre.mp3 &");
 	mlx_hook(g.win, 2, 1L << 0, &key_pressed, &g);
 	mlx_hook(g.win, 17, (1L << 17), &red_cross, &g);
 	mlx_hook(g.win, 6, (1L << 6), &ft_mouse, &g);
