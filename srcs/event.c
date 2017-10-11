@@ -86,6 +86,8 @@ void	key_2(int kc, t_gen *g)
 
 int		key_pressed(int kc, t_gen *g)
 {
+	if (kc == 50)
+		bmp_write(g);
 	if (kc == 53)
 	{
 		system("killall afplay");

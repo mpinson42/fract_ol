@@ -17,6 +17,8 @@
 # include "mlx.h"
 # define W 500
 # define H 500
+# define IMG_WIDTH (500)
+# define IMG_HEIGHT (500)
 
 typedef	struct		s_gen
 {
@@ -80,5 +82,6 @@ void				ft_init_frac3(t_gen *g, int i);
 void				ft_init_frac4(t_gen *g, int i);
 void				ft_init_frac5(t_gen *g, int i);
 void				ft_menu(t_gen *g);
+void				bmp_write(t_gen *g);
 
 #endif

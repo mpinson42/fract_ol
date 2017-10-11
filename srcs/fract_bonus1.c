@@ -59,4 +59,5 @@ void	ft_menu(t_gen *g)
 	mlx_string_put(g->mlx, g->win, 0, 45, 0x00FFFFFF, "echap quiter");
 	mlx_string_put(g->mlx, g->win, 0, 60, 0x00FFFFFF, "!/@/# changer fract");
 	mlx_string_put(g->mlx, g->win, 0, 75, 0x00FFFFFF, "space stop julia");
+	mlx_string_put(g->mlx, g->win, 0, 90, 0x00FFFFFF, "~ screen");
 }
