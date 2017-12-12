@@ -6,7 +6,7 @@
 /*   By: mpinson <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/07 19:54:05 by mpinson           #+#    #+#             */
-/*   Updated: 2017/09/07 19:54:08 by mpinson          ###   ########.fr       */
+/*   Updated: 2017/12/12 19:47:55 by mpinson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,11 @@ int		main(int argc, char **argv)
 	if (!(g.img_ptr = mlx_get_data_addr(g.img, &(g.bpp),
 					&(g.s_l), &(g.endian))))
 		return (-1);
-	if (!(g.win = mlx_new_window(g.mlx, W, H, "fdf")))
-		return (-1);
-	if (main_chouse(&g, argv) == -1)
+	if (!(g.win = mlx_new_window(g.mlx, W, H, "fractol")))
 		return (-1);
 	system("afplay musique/arbre.mp3 &");
+	if (main_chouse(&g, argv) == -1)
+		return (-1);
 	mlx_hook(g.win, 2, 1L << 0, &key_pressed, &g);
 	mlx_hook(g.win, 17, (1L << 17), &red_cross, &g);
 	mlx_hook(g.win, 6, (1L << 6), &ft_mouse, &g);
